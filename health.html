@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: greenyellow;
+        }
+        h1{
+            color: red;
+        }
+        ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li{
+            padding: 10px;
+            margin-bottom: 7px;
+            background-color: blue;
+            color: gray;
+            font-size: 15px;
+        }
+        #health-form{
+            background-color: magenta;
+            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        #health-form-input{
+            margin-bottom: 10px;
+            background-color: blueviolet;
+        }
+        #health-form button  {
+            background-color: orange;
+            border: navy;
+            padding:  10px 20px;
+            color: yellowgreen;
+            cursor: pointer;
+        }
+        #health-form button:hover{
+            background-color: chartreuse;
+        }
+        
+
+
+    </style>
+</head>
+<body>
+    <h1>Health Dashboard</h1>
+    <ul id="list"></ul>
+    <form id="health-form">
+        <input type="text" id="health-input" placeholder="Enter health Parameters here">
+        <button type="submit">Add Tip</button>
+
+    </form>
+    <script>
+        const health_tips=[];
+        document.getElementById('health-form').addEventListener('submit', (e)=>{
+            e.preventDefault();
+            const tip= document.getElementById('health-input').value.trim();
+            if(tip){
+                health_tips.push(tip);
+                document.getElementById('health-input').value='';
+                updateList();
+            }
+        });
+        function updateList(){
+            const list=document.getElementById('list');
+            list.innerHTML = '';
+            health_tips.forEach((tip,index)=>{
+                const li=document.createElement('li');
+                li.setAttribute('id','item${index}');
+                li.textContent=tip;
+                list.appendChild(li);
+            });
+        }
+
+    </script>
+</body>
+</html>
